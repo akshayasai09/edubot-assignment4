@@ -1,0 +1,59 @@
+
+Test Case 1: Create New User
+Input:
+    Name: John Doe
+    Email: john@example.com
+    Phone: 1234567890
+    Date: 2025-07-10
+Expected Output:
+    User created successfully
+Result:
+    PASS
+
+Test Case 2: View All Users
+Input:
+    Access /users or homepage
+Expected Output:
+    List of all registered users
+Result:
+    PASS
+
+Test Case 3: Update User Info
+Input:
+    Update email of John Doe to john.doe@updated.com
+Expected Output:
+    User details updated successfully
+Result:
+    PASS
+
+Test Case 4: Delete User
+Input:
+    Delete John Doe's record
+Expected Output:
+    User deleted successfully
+Result:
+    PASS
+
+Test Case 5: Invalid Email
+Input:
+    Email: john[at]example[dot]com
+Expected Output:
+    Show error message or validation failed
+Result:
+    PASS (if properly handled)
+
+Test Case 6: Empty Field Submission
+Input:
+    Submit form without filling fields
+Expected Output:
+    Show form validation errors
+Result:
+    PASS
+
+Test Case 7: Database Connection
+Input:
+    Run app with wrong DB credentials
+Expected Output:
+    Database connection error
+Result:
+    PASS

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Feedbacks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>User Feedback System</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('create_user') }}">Create User</a>
+            <a href="{{ url_for('submit_feedback') }}">Submit Feedback</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <h2>Feedbacks for {{ user.name }}</h2>
+        <p>Email: {{ user.email }}</p>
+        
+        <div class="actions">
+            <a href="{{ url_for('submit_feedback') }}?user_id={{ user.id }}" class="button">Add New Feedback</a>
+        </div>
+
+        <div class="feedback-list">
+            {% for fb in feedbacks %}
+            <div class="feedback-item">
+                <div class="feedback-meta">
+                    Submitted on: {{ fb.submitted_at.strftime('%Y-%m-%d %H:%M') }}
+                </div>
+                <div class="feedback-text">
+                    {{ fb.feedback }}
+                </div>
+                <div class="feedback-actions">
+                    <a href="{{ url_for('update_feedback', feedback_id=fb.id) }}" class="button">Edit</a>
+                    <form action="{{ url_for('delete_feedback', feedback_id=fb.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="button danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+            {% else %}
+            <p>No feedbacks found for this user.</p>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer>
+        <p>User Feedback System &copy; 2025</p>
+    </footer>
+</body>
+</html>

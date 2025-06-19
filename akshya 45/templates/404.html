@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>User Feedback System</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('create_user') }}">Create User</a>
+            <a href="{{ url_for('submit_feedback') }}">Submit Feedback</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>404 Error - Page Not Found</h2>
+        <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+        <a href="{{ url_for('index') }}" class="button">Return to Home</a>
+    </main>
+
+    <footer>
+        <p>User Feedback System &copy; 2025</p>
+    </footer>
+</body>
+</html>

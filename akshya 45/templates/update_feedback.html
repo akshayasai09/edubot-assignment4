@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VMIS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>User Feedback System</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('create_user') }}">Create User</a>
+            <a href="{{ url_for('submit_feedback') }}">Submit Feedback</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <h2>Update Feedback</h2>
+        <form method="POST" action="{{ url_for('update_feedback', feedback_id=feedback.id) }}">
+            <div class="form-group">
+                <label for="feedback">Feedback:</label>
+                <textarea id="feedback" name="feedback" required>{{ feedback.feedback }}</textarea>
+            </div>
+            <button type="submit">Update Feedback</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>User Feedback System &copy; 2025</p>
+    </footer>
+</body>
+</html>

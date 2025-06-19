@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VMIS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>User Feedback System</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('create_user') }}">Create User</a>
+            <a href="{{ url_for('submit_feedback') }}">Submit Feedback</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <h2>User List</h2>
+        <div class="user-list">
+            {% for user in users %}
+            <div class="user-item">
+                <h3>{{ user.name }}</h3>
+                <p>{{ user.email }}</p>
+                <p>Member since: {{ user.created_at.strftime('%Y-%m-%d') }}</p>
+                <div class="actions">
+                    <a href="{{ url_for('view_feedbacks', user_id=user.id) }}" class="button">View Feedbacks</a>
+                </div>
+            </div>
+            {% else %}
+            <p>No users found. <a href="{{ url_for('create_user') }}">Create a new user</a></p>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer>
+        <p>User Feedback System &copy; 2025</p>
+    </footer>
+</body>
+</html>

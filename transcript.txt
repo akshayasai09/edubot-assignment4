@@ -1,0 +1,85 @@
+The goal of this assignment is to teach students how to integrate a PostgreSQL database into a Flask application. By completing this assignment, students will design and manage database schemas, perform CRUD operations, and connect their Flask app to PostgreSQL for dynamic content handling in the Visa Mock Interview System (VMIS). Scenario: The Visa Mock Interview System (VMIS) needs a database to securely store user information and feedback data. This assignment focuses on designing a relational database schema, performing basic operations, and integrating the database with Flask. Requirements: 1. Database Setup Install PostgreSQL and create a new database named vmis_db. Create two tables: Users Table: Fields: id (primary key), name (text), email (unique, text), created_at (timestamp, default current time). Fields: id (primary key), user_id (foreign key referencing Users), feedback (text), submitted_at (timestamp, default current time). Feedback Table: 2. Flask-PostgreSQL Integration Install and configure SQLAlchemy in the Flask application. Create SQLAlchemy models for the Users and Feedback tables. 3. CRUD Operations Implement the following operations in Flask routes: Create User: A route (/create_user) to add a new user. Input: Name and Email. A route (/submit_feedback) to add feedback for an existing user. Input: User ID and Feedback text. A route (/view_feedbacks) to display all feedback for a specific user. Input: User ID. A route (/update_feedback/<feedback_id>) to edit an existing feedback entry. A route (/delete_feedback/<feedback_id>) to remove a feedback entry. Submit Feedback: View Feedback: Update Feedback: Delete Feedback: 4. Schema Design and Validation Ensure the following constraints in the schema: Unique emails in the Users table. Cascade delete: When a user is deleted, their feedback entries are also deleted. Validation: Prevent empty feedback submissions. 5. Error Handling Add error handling for: Database connection issues. Violations of unique constraints. Invalid or missing inputs. 6. Testing and Debugging Write test cases for: Adding and retrieving users. Adding, updating, and deleting feedback. Handling invalid inputs or actions (e.g., deleting non-existent feedback). 7. Advanced Tasks (Optional) Implement pagination for viewing feedback entries if there are more than 10 results. Add search functionality to filter feedback based on keywords. Deliverables: Database Scripts: SQL scripts for creating and managing the Users and Feedback tables. Python scripts for integrating the database and implementing CRUD operations. A file (test_cases.txt) documenting test inputs, outputs, and results. Instructions for setting up PostgreSQL, connecting it to Flask, and testing the application. Flask Application Code: Test Cases: README.md: Submission Guidelines: Submit all SQL scripts, Python code, and documentation in a ZIP archive. Optionally, host the project on GitHub and provide the repository link. Evaluation Criteria: Database Design: Proper schema design with constraints and relationships. Functional and efficient implementation of all operations. Seamless connection between Flask and PostgreSQL. Effective management of database and input errors. Clear and user-friendly README.md and test cases. CRUD Operations: Flask Integration: Error Handling: Documentation:
+
+E
+Certainly! Here is the step-by-step approach to solve the problem of integrating a PostgreSQL database into a Flask application, as per the provided requirements.
+
+Step-by-Step Approach:
+1. Database Setup
+Install PostgreSQL:
+
+Follow the installation instructions for PostgreSQL based on your operating system.
+Ensure PostgreSQL is running on your system.
+Create Database and Tables:
+
+Connect to PostgreSQL using psql or pgAdmin.
+Create the database vmis_db.
+Create the Users table with fields: id (primary key), name (text), email (unique, text), and created_at (timestamp, default current time).
+Create the Feedback table with fields: id (primary key), user_id (foreign key referencing Users), feedback (text), and submitted_at (timestamp, default current time).
+Apply constraints to ensure data integrity.
+2. Flask-PostgreSQL Integration
+Install Dependencies:
+
+Install Flask, SQLAlchemy, and Psycopg2 using pip.
+Configure SQLAlchemy in Flask:
+
+Set up Flask application and configure it to connect to the PostgreSQL database.
+Define SQLAlchemy models for the Users and Feedback tables.
+3. CRUD Operations
+Create Routes:
+
+Define a route (/create_user) to add a new user.
+Input: Name and Email.
+Define a route (/submit_feedback) to add feedback for an existing user.
+Input: User ID and Feedback text.
+Define a route (/view_feedbacks) to display all feedback for a specific user.
+Input: User ID.
+Define a route (/update_feedback/<feedback_id>) to edit an existing feedback entry.
+Define a route (/delete_feedback/<feedback_id>) to remove a feedback entry.
+4. Schema Design and Validation
+Ensure Constraints:
+
+Users table should have unique emails.
+Implement cascade delete for feedback entries linked to a deleted user.
+Validate non-empty feedback submissions.
+5. Error Handling
+Implement Error Handling:
+
+Handle database connection issues.
+Handle violations of unique constraints.
+Handle invalid or missing input data with appropriate messaging.
+6. Testing and Debugging
+Write Test Cases:
+
+Test cases for adding and retrieving users.
+Test cases for adding, updating, and deleting feedback.
+Test cases for handling invalid inputs or actions (e.g., deleting non-existent feedback).
+7. Advanced Tasks (Optional)
+Implement Advanced Features:
+
+Implement pagination when viewing feedback if there are more than 10 results.
+Add search functionality to filter feedback based on keywords.
+Deliverables
+Database Scripts:
+
+Provide SQL scripts for creating and managing the Users and Feedback tables.
+Flask Application Code:
+
+Python scripts to integrate the database and implement all CRUD operations.
+Test Cases:
+
+Document test inputs, outputs, and results in a file (test_cases.txt).
+README.md:
+
+Instructions for setting up PostgreSQL, connecting it to Flask, and testing the application.
+Submission Guidelines
+Submit:
+
+All SQL scripts, Python code, and documentation in a ZIP archive.
+Optionally, host the project on GitHub and provide the repository link.
+Evaluation Criteria
+Database Design: Proper schemas with constraints and relationships.
+CRUD Operations: Functional and efficient implementations.
+Flask Integration: Smooth connection between Flask and PostgreSQL.
+Error Handling: Effective management of database and input errors.
+Documentation: Clear README.md and test cases.
+By following these steps, you’ll be able to address all requirements and ensure your solution is optimized, efficient, and robust for handling competitive programming test cases.
